@@ -1,7 +1,7 @@
 import React from "react"
 import { createRoot } from "react-dom/client";
 import { Carousel } from "./component/Carousel";
-import { urlList } from "./model/UrlList";
+import { imageAndLinkUrls } from "./model/UrlList";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -16,8 +16,8 @@ const container = document.getElementById("root")
 if (container === null) { throw new Error("コンテナ要素となるタグが見つかりません") }
 const root = createRoot(container)
 root.render(
-	<div>
-		<GlobalStyle />
-		<Carousel urlList={urlList} />
-	</div>
+  <div>
+    <GlobalStyle />
+    <Carousel imageAndLinkUrls={imageAndLinkUrls} />
+  </div>
 )

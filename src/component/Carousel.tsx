@@ -1,51 +1,53 @@
 import React, { MouseEventHandler, useState } from "react";
 import styled from "styled-components";
-import { AdjacentButton, AdjacentButtonProps } from "./AdjacentButton";
+import { ImageAndLinkUrl } from "../model/UrlList";
+import { SelectButton, SelectButtonProps } from "./SelectButton";
 
 export type CarouselProps = {
 	className?: string
-	urlList: Array<URL>,
+	imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl>,
 }
 
-const CarouselElement = ({ className, urlList }: CarouselProps): JSX.Element => {
+const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
 	const [showingImageNumber, setShowingImageNumber] = useState(0);
 
-	const imageTags = urlList.map((url, index) => {
-		return <img src={url.href} key={index} />
+	const linkedImageTags = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
+		return (
+			<a href={imageAndLinkUrl.linkUrl.href}>
+				<img src={imageAndLinkUrl.imageUrl.href} key={index} />
+			</a>
+		)
 	})
 
 	const changeShowingImageNumber = (isPrevious: boolean) => {
 		const number = isPrevious ? -1 : 1
 		const target = showingImageNumber + number
 		// 最小1～画像数まで
-		const isInRange = (target >= 1) && (target <= (urlList.length))
+		const isInRange = (target >= 1) && (target <= (imageAndLinkUrls.length))
 		if (isInRange) { setShowingImageNumber(target) }
 	}
 
-	const previousButtonProps: AdjacentButtonProps = {
+	const previousButtonProps: SelectButtonProps = {
 		isPrevious: true,
 		onClick: (event) => { changeShowingImageNumber(true) }
 	}
-	const nextButtonProps: AdjacentButtonProps = {
+	const nextButtonProps: SelectButtonProps = {
 		isPrevious: false,
 		onClick: (event) => { changeShowingImageNumber(false) }
 	}
 
-
 	return (
 		<React.StrictMode>
-			<div>
-				<AdjacentButton {...previousButtonProps} />
-				<div className={className}>
-					{imageTags}
-				</div>
-				<AdjacentButton {...nextButtonProps} />
+			<div className={className}>
+				{linkedImageTags}
 			</div>
+			<SelectButton {...previousButtonProps} />
+			<SelectButton {...nextButtonProps} />
 		</React.StrictMode>
 	)
 };
 
 export const Carousel = styled(CarouselElement)`
     white-space: nowrap;
-		transform: translate3d(0%,0,0);
+		/* transform: translate3d(0%,0,0); */
   `;

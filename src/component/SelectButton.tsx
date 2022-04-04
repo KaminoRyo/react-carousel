@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 
-export type AdjacentButtonProps = {
+export type SelectButtonProps = {
 	className?: string,
 	isPrevious: boolean,
 	onClick: MouseEventHandler<HTMLButtonElement>
 }
-const AdjacentButtonElement = ({ className, isPrevious, onClick }: AdjacentButtonProps): JSX.Element => {
+const SelectButtonElement = ({ className, isPrevious, onClick }: SelectButtonProps): JSX.Element => {
 	const isWord = isPrevious ? `<` : `>`
 	return (
 		<button
@@ -19,6 +19,8 @@ const AdjacentButtonElement = ({ className, isPrevious, onClick }: AdjacentButto
 	)
 }
 
-export const AdjacentButton = styled(AdjacentButtonElement)`
-	position:abusolute;
+export const SelectButton = styled(SelectButtonElement)`
+	height:100px;
+	width:100px;
+	background-color:white;
 `
