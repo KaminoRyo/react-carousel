@@ -3,24 +3,23 @@ import styled from "styled-components";
 
 export type SelectButtonProps = {
 	className?: string,
-	isPrevious: boolean,
+	index: number,
 	onClick: MouseEventHandler<HTMLButtonElement>
 }
-const SelectButtonElement = ({ className, isPrevious, onClick }: SelectButtonProps): JSX.Element => {
-	const isWord = isPrevious ? `<` : `>`
+const SelectButtonElement = ({ className, index, onClick }: SelectButtonProps): JSX.Element => {
 	return (
 		<button
-			id={`${isWord}-button`}
+			id={`image${index}-button`}
 			className={className}
 			onClick={onClick}
 		>
-			{isWord}
+			●
 		</button >
 	)
 }
 
 export const SelectButton = styled(SelectButtonElement)`
-	height:100px;
-	width:100px;
+	height:45px;
+	width:45px;
 	background-color:white;
 `

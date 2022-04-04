@@ -13,36 +13,26 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 
 	const linkedImageTags = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
 		return (
-			<a href={imageAndLinkUrl.linkUrl.href}>
-				<img src={imageAndLinkUrl.imageUrl.href} key={index} />
+			<a href={imageAndLinkUrl.linkUrl.href} key={index}>
+				<img src={imageAndLinkUrl.imageUrl.href} />
 			</a>
 		)
 	})
 
-	const changeShowingImageNumber = (isPrevious: boolean) => {
-		const number = isPrevious ? -1 : 1
-		const target = showingImageNumber + number
-		// 最小1～画像数まで
-		const isInRange = (target >= 1) && (target <= (imageAndLinkUrls.length))
-		if (isInRange) { setShowingImageNumber(target) }
-	}
-
-	const previousButtonProps: SelectButtonProps = {
-		isPrevious: true,
-		onClick: (event) => { changeShowingImageNumber(true) }
-	}
-	const nextButtonProps: SelectButtonProps = {
-		isPrevious: false,
-		onClick: (event) => { changeShowingImageNumber(false) }
-	}
+	const selectButtons = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
+		const props: SelectButtonProps = {
+			index: index,
+			onClick: (event) => setShowingImageNumber(index)
+		}
+		return <SelectButton {...props} key={index} />
+	})
 
 	return (
 		<React.StrictMode>
 			<div className={className}>
 				{linkedImageTags}
 			</div>
-			<SelectButton {...previousButtonProps} />
-			<SelectButton {...nextButtonProps} />
+			{selectButtons}
 		</React.StrictMode>
 	)
 };
