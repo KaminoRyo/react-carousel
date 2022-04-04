@@ -1,28 +1,28 @@
 import React, { MouseEventHandler, useState } from "react";
 import styled from "styled-components";
+import { StyledComponent } from "../model/Type";
 import { ImageAndLinkUrl } from "../model/UrlList";
 import { SelectButton, SelectButtonProps } from "./SelectButton";
+import { ImageBox } from "./ImageBox";
 
-export type CarouselProps = {
-	className?: string
+export type CarouselProps = StyledComponent & {
 	imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl>,
 }
 
 const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
-	const [showingImageNumber, setShowingImageNumber] = useState(0);
+	const [showingImageNumber, setShowingImageIndex] = useState(0);
 
-	const linkedImageTags = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
+	const imageBoxes = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
+		const indexObj = { ...imageAndLinkUrl, ...{ index: index } }
 		return (
-			<a href={imageAndLinkUrl.linkUrl.href} key={index}>
-				<img src={imageAndLinkUrl.imageUrl.href} />
-			</a>
+			<ImageBox {...indexObj}></ImageBox >
 		)
 	})
 
 	const selectButtons = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
 		const props: SelectButtonProps = {
 			index: index,
-			onClick: (event) => setShowingImageNumber(index)
+			onClick: (event) => setShowingImageIndex(index)
 		}
 		return <SelectButton {...props} key={index} />
 	})
@@ -30,7 +30,7 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 	return (
 		<React.StrictMode>
 			<div className={className}>
-				{linkedImageTags}
+				{imageBoxes}
 			</div>
 			{selectButtons}
 		</React.StrictMode>
@@ -39,5 +39,8 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 
 export const Carousel = styled(CarouselElement)`
     white-space: nowrap;
-		/* transform: translate3d(0%,0,0); */
+		/* サンプル画像のサイズ */
+		width: 1280px;
+		height:512px;
+		overflow:hidden;
   `;

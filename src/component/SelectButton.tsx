@@ -1,8 +1,8 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
+import { StyledComponent } from "../model/Type";
 
-export type SelectButtonProps = {
-	className?: string,
+export type SelectButtonProps = StyledComponent & {
 	index: number,
 	onClick: MouseEventHandler<HTMLButtonElement>
 }
