@@ -1,3 +1,7 @@
 # React Carousel
 
-This is a prototype I made as a practice of React.
+これはReact練習用に制作している試作品です。
+
+## 使い方
+現状Reactコンポーネントとして制作しています。
+UrlList.tsにイメージURLとリンクURLのペアを設定してください。
