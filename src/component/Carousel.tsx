@@ -27,10 +27,20 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 		return <SelectButton {...props} key={index} />
 	})
 
+	const List = styled.div`
+		width: 1280px;
+		margin: 0 auto;
+		white-space: nowrap;
+		font-size: 0;
+		transition: transform 0.5s;
+	`
+
 	return (
 		<React.StrictMode>
 			<div className={className}>
-				{imageBoxes}
+				<List>
+					{imageBoxes}
+				</List>
 			</div>
 			{selectButtons}
 		</React.StrictMode>
@@ -38,9 +48,6 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 };
 
 export const Carousel = styled(CarouselElement)`
-    white-space: nowrap;
-		/* サンプル画像のサイズ */
-		width: 1280px;
-		height:512px;
-		overflow:hidden;
-  `;
+  border: solid 1px #ff0000;
+  overflow: hidden;
+`;
