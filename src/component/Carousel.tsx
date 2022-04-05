@@ -9,7 +9,7 @@ export type CarouselProps = StyledComponent & {
 	imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl>,
 }
 
-const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
+export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
 	const [showingImageNumber, setShowingImageIndex] = useState(0);
 
 	const imageBoxes = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
@@ -32,44 +32,44 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 		return <SelectButton {...props} key={index} />
 	})
 
+	const StyledCarousel = styled.div`
+		border: solid 1px #00ffea;
+		width:1280px;
+		overflow: hidden;
+
+		.list {
+			width: 1280px;
+			white-space: nowrap;
+			font-size: 0;
+			transition: transform 0.5s;
+			transform: translate3d(${-100 * showingImageNumber}%, 0, 0);
+
+			.list_item {
+				display: inline-block;
+				width: 100%;
+				height: 512px;
+				font-size: 16px;
+			}
+		}
+
+		.item {
+			width: 100%;
+			height: 100%;
+			border: solid 1px #ff00dd;
+			user-select: none;
+		}
+	`
+
 	return (
 		<React.StrictMode>
-			<div className={className}>
-				<div className="list">
-					{imageBoxes}
+			<StyledCarousel>
+				<div>
+					<div className="list">
+						{imageBoxes}
+					</div>
 				</div>
-			</div>
+			</StyledCarousel>
 			{selectButtons}
 		</React.StrictMode>
 	)
-};
-
-export const Carousel = styled(CarouselElement)`
-  border: solid 1px #00ffea;
-	/* width:1280px; */
-  overflow: hidden;
-
-	.list {
-		width: 1280px;
-		margin: 0 auto;
-		white-space: nowrap;
-		font-size: 0;
-		transition: transform 0.5s;
-		transform: translate3d(0%, 0, 0);
-
-		.list_item {
-			display: inline-block;
-			width: 100%;
-			height: 512px;
-			font-size: 16px;
-		}
-	}
-
-	.item {
-		width: 100%;
-		height: 100%;
-		border: solid 1px #ff00dd;
-		user-select: none;
-	}
 }
-`;
