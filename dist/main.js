@@ -3,17 +3,36 @@
 	height:45px;
 	width:45px;
 	background-color:white;
-`,Me=Ie((({className:t,index:n,linkUrl:r,imageUrl:a})=>e.createElement("div",{className:t},e.createElement("a",{href:r.href,key:n},e.createElement("img",{src:a.href})))))`
-	`,Fe=Ie((({className:t,imageAndLinkUrls:n})=>{const[r,a]=(0,e.useState)(0),l=n.map(((t,n)=>{const r=Object.assign(Object.assign({},t),{index:n});return e.createElement(Me,Object.assign({},r))})),o=n.map(((t,n)=>{const r={index:n,onClick:e=>a(n)};return e.createElement(Ae,Object.assign({},r,{key:n}))}));return e.createElement(e.StrictMode,null,e.createElement("div",{className:t},l),o)}))`
-    white-space: nowrap;
-		/* サンプル画像のサイズ */
-		width: 1280px;
-		height:512px;
-		overflow:hidden;
-  `;var De=n(182),$e=n(87),Ue=n(797),je=n(187),Be=n(321);const Ve=[{imageUrl:new URL(De),linkUrl:new URL("https://yahoo.co.jp")},{imageUrl:new URL($e),linkUrl:new URL("https://yahoo.co.jp")},{imageUrl:new URL(Ue),linkUrl:new URL("https://yahoo.co.jp")},{imageUrl:new URL(je),linkUrl:new URL("https://yahoo.co.jp")},{imageUrl:new URL(Be),linkUrl:new URL("https://yahoo.co.jp")}],He=(function(t){for(var n=arguments.length,r=new Array(n>1?n-1:0),a=1;a<n;a++)r[a-1]=arguments[a];var l=ve.apply(void 0,[t].concat(r)),o="sc-global-"+Se(JSON.stringify(l)),i=new Oe(l,o);function u(t){var n=le(),r=oe(),a=(0,e.useContext)(Ne),l=(0,e.useRef)(n.allocateGSInstance(o)).current;return n.server&&s(l,t,n,a,r),(0,e.useLayoutEffect)((function(){if(!n.server)return s(l,t,n,a,r),function(){return i.removeStyles(l,n)}}),[l,t,n,a,r]),null}function s(e,t,n,r,a){if(i.isStatic)i.renderStyles(e,x,n,a);else{var l=d({},t,{theme:ye(t,r,u.defaultProps)});i.renderStyles(e,l,n,a)}}return e.memo(u)})`
+`;var Me=n(182),Fe=n(87),De=n(797),$e=n(187),Ue=n(321);const je=[{imageUrl:new URL(Me),linkUrl:new URL("https://yahoo.co.jp")},{imageUrl:new URL(Fe),linkUrl:new URL("https://www.google.co.jp/")},{imageUrl:new URL(De),linkUrl:new URL("https://www.microsoft.com/ja-jp")},{imageUrl:new URL($e),linkUrl:new URL("https://www.apple.com/jp/")},{imageUrl:new URL(Ue),linkUrl:new URL("https://github.com/")}],Be=(function(t){for(var n=arguments.length,r=new Array(n>1?n-1:0),a=1;a<n;a++)r[a-1]=arguments[a];var l=ve.apply(void 0,[t].concat(r)),o="sc-global-"+Se(JSON.stringify(l)),i=new Oe(l,o);function u(t){var n=le(),r=oe(),a=(0,e.useContext)(Ne),l=(0,e.useRef)(n.allocateGSInstance(o)).current;return n.server&&s(l,t,n,a,r),(0,e.useLayoutEffect)((function(){if(!n.server)return s(l,t,n,a,r),function(){return i.removeStyles(l,n)}}),[l,t,n,a,r]),null}function s(e,t,n,r,a){if(i.isStatic)i.renderStyles(e,x,n,a);else{var l=d({},t,{theme:ye(t,r,u.defaultProps)});i.renderStyles(e,l,n,a)}}return e.memo(u)})`
   * {
     box-sizing: border-box;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
   }
-`,We=document.getElementById("root");if(null===We)throw new Error("コンテナ要素となるタグが見つかりません");(0,t.s)(We).render(e.createElement("div",null,e.createElement(He,null),e.createElement(Fe,{imageAndLinkUrls:Ve})))})()})();
+`,Ve=document.getElementById("root");if(null===Ve)throw new Error("コンテナ要素となるタグが見つかりません");(0,t.s)(Ve).render(e.createElement("div",null,e.createElement(Be,null),e.createElement((({className:t,imageAndLinkUrls:n})=>{const[r,a]=(0,e.useState)(0),l=n.map(((t,n)=>e.createElement("div",{className:"list_item"},e.createElement("div",{className:"item"},e.createElement("a",{href:t.linkUrl.href,key:n},e.createElement("img",{src:t.imageUrl.href})))))),o=n.map(((t,n)=>{const r={index:n,onClick:e=>a(n)};return e.createElement(Ae,Object.assign({},r,{key:n}))})),i=Ie.div`
+		border: solid 1px #00ffea;
+		width:1280px;
+		overflow: hidden;
+
+		.list {
+			width: 1280px;
+			white-space: nowrap;
+			font-size: 0;
+			transition: transform 0.5s;
+			transform: translate3d(${-100*r}%, 0, 0);
+
+			.list_item {
+				display: inline-block;
+				width: 100%;
+				height: 512px;
+				font-size: 16px;
+			}
+		}
+
+		.item {
+			width: 100%;
+			height: 100%;
+			border: solid 1px #ff00dd;
+			user-select: none;
+		}
+	`;return e.createElement(e.StrictMode,null,e.createElement(i,null,e.createElement("div",null,e.createElement("div",{className:"list"},l))),o)}),{imageAndLinkUrls:je})))})()})();
