@@ -3,19 +3,24 @@ import styled from "styled-components";
 import { StyledComponent } from "../model/Type";
 import { ImageAndLinkUrl } from "../model/UrlList";
 import { SelectButton, SelectButtonProps } from "./SelectButton";
-import { ImageBox } from "./ImageBox";
+
 
 export type CarouselProps = StyledComponent & {
 	imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl>,
 }
 
-const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
+export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
 	const [showingImageNumber, setShowingImageIndex] = useState(0);
 
 	const imageBoxes = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
-		const indexObj = { ...imageAndLinkUrl, ...{ index: index } }
 		return (
-			<ImageBox {...indexObj}></ImageBox >
+			<div className="list_item">
+				<div className="item">
+					<a href={imageAndLinkUrl.linkUrl.href} key={index}>
+						<img src={imageAndLinkUrl.imageUrl.href} />
+					</a>
+				</div>
+			</div>
 		)
 	})
 
@@ -27,20 +32,44 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 		return <SelectButton {...props} key={index} />
 	})
 
+	const StyledCarousel = styled.div`
+		border: solid 1px #00ffea;
+		width:1280px;
+		overflow: hidden;
+
+		.list {
+			width: 1280px;
+			white-space: nowrap;
+			font-size: 0;
+			transition: transform 0.5s;
+			transform: translate3d(${-100 * showingImageNumber}%, 0, 0);
+
+			.list_item {
+				display: inline-block;
+				width: 100%;
+				height: 512px;
+				font-size: 16px;
+			}
+		}
+
+		.item {
+			width: 100%;
+			height: 100%;
+			border: solid 1px #ff00dd;
+			user-select: none;
+		}
+	`
+
 	return (
 		<React.StrictMode>
-			<div className={className}>
-				{imageBoxes}
-			</div>
+			<StyledCarousel>
+				<div>
+					<div className="list">
+						{imageBoxes}
+					</div>
+				</div>
+			</StyledCarousel>
 			{selectButtons}
 		</React.StrictMode>
 	)
-};
-
-export const Carousel = styled(CarouselElement)`
-    white-space: nowrap;
-		/* サンプル画像のサイズ */
-		width: 1280px;
-		height:512px;
-		overflow:hidden;
-  `;
+}
