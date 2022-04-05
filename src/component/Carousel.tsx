@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { StyledComponent } from "../model/Type";
 import { ImageAndLinkUrl } from "../model/UrlList";
 import { SelectButton, SelectButtonProps } from "./SelectButton";
-import { ImageBox } from "./ImageBox";
+
 
 export type CarouselProps = StyledComponent & {
 	imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl>,
@@ -13,9 +13,14 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 	const [showingImageNumber, setShowingImageIndex] = useState(0);
 
 	const imageBoxes = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
-		const indexObj = { ...imageAndLinkUrl, ...{ index: index } }
 		return (
-			<ImageBox {...indexObj}></ImageBox >
+			<div className="list_item">
+				<div className="item">
+					<a href={imageAndLinkUrl.linkUrl.href} key={index}>
+						<img src={imageAndLinkUrl.imageUrl.href} />
+					</a>
+				</div>
+			</div>
 		)
 	})
 
@@ -27,20 +32,12 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 		return <SelectButton {...props} key={index} />
 	})
 
-	const List = styled.div`
-		width: 1280px;
-		margin: 0 auto;
-		white-space: nowrap;
-		font-size: 0;
-		transition: transform 0.5s;
-	`
-
 	return (
 		<React.StrictMode>
 			<div className={className}>
-				<List>
+				<div className="list">
 					{imageBoxes}
-				</List>
+				</div>
 			</div>
 			{selectButtons}
 		</React.StrictMode>
@@ -48,6 +45,31 @@ const CarouselElement = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 };
 
 export const Carousel = styled(CarouselElement)`
-  border: solid 1px #ff0000;
+  border: solid 1px #00ffea;
+	/* width:1280px; */
   overflow: hidden;
+
+	.list {
+		width: 1280px;
+		margin: 0 auto;
+		white-space: nowrap;
+		font-size: 0;
+		transition: transform 0.5s;
+		transform: translate3d(0%, 0, 0);
+
+		.list_item {
+			display: inline-block;
+			width: 100%;
+			height: 512px;
+			font-size: 16px;
+		}
+	}
+
+	.item {
+		width: 100%;
+		height: 100%;
+		border: solid 1px #ff00dd;
+		user-select: none;
+	}
+}
 `;
