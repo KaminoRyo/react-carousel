@@ -1,7 +1,8 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { StyledComponent } from "../model/Type";
 import { ImageAndLinkUrl } from "../model/UrlList";
+import { ImageBox } from "./ImageBox";
 import { SelectButton, SelectButtonProps } from "./SelectButton";
 
 
@@ -10,17 +11,13 @@ export type CarouselProps = StyledComponent & {
 }
 
 export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.Element => {
-	const [showingImageNumber, setShowingImageIndex] = useState(0);
+	const [startX, setStartX] = useState(null)
+	const [diffX, setDiffX] = useState(0)
+	const [showingImageNumber, setShowingImageIndex] = useState(0)
 
 	const imageBoxes = imageAndLinkUrls.map((imageAndLinkUrl, index) => {
 		return (
-			<div className="list_item">
-				<div className="item">
-					<a href={imageAndLinkUrl.linkUrl.href} key={index}>
-						<img src={imageAndLinkUrl.imageUrl.href} />
-					</a>
-				</div>
-			</div>
+			<ImageBox {...imageAndLinkUrl} key={index}></ImageBox>
 		)
 	})
 
@@ -63,10 +60,8 @@ export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 	return (
 		<React.StrictMode>
 			<StyledCarousel>
-				<div>
-					<div className="list">
-						{imageBoxes}
-					</div>
+				<div className="list">
+					{imageBoxes}
 				</div>
 			</StyledCarousel>
 			{selectButtons}
