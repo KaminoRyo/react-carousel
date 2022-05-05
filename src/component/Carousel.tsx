@@ -29,35 +29,29 @@ export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 		return <SelectButton {...props} key={index} />
 	})
 
-	const StyledCarousel = styled.div`
-		border: solid 1px #00ffea;
-		width:1280px;
-		overflow: hidden;
-
-		.list {
-			width: 1280px;
-			white-space: nowrap;
-			font-size: 0;
-			transition: transform 0.5s;
-			transform: translate3d(${-100 * showingImageNumber}%, 0, 0);
-
-			/* .list_item {
-				display: inline-block;
-				width: 100%;
-				height: 512px;
-				font-size: 16px;
-			} */
-		}
-	`
-
 	return (
 		<React.StrictMode>
-			<StyledCarousel>
+			<CarouselStyle showingImageNumber={showingImageNumber}>
 				<div className="list">
 					{imageBoxes}
 				</div>
-			</StyledCarousel>
+			</CarouselStyle>
 			{selectButtons}
 		</React.StrictMode>
 	)
 }
+
+
+const CarouselStyle = styled.div<{ showingImageNumber: number }>`
+	border: solid 1px #00ffea;
+	width:1280px;
+	overflow: hidden;
+
+	.list {
+		width: 1280px;
+		white-space: nowrap;
+		font-size: 0;
+		transition: transform 0.5s;
+		transform: translate3d(${props => -100 * props.showingImageNumber}%, 0, 0);
+	}
+`
