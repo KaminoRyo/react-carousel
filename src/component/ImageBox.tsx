@@ -6,7 +6,7 @@ import { StyledComponent } from "../model/Type";
 type ImageBoxProps = StyledComponent & ImageAndLinkUrl
 const ImageBoxElement = ({ className, linkUrl, imageUrl }: ImageBoxProps): JSX.Element => {
 	return (
-		<div className="list_item">
+		<div className={className}>
 			<div className="item">
 				<a href={linkUrl.href}>
 					<img src={imageUrl.href} />
@@ -16,18 +16,16 @@ const ImageBoxElement = ({ className, linkUrl, imageUrl }: ImageBoxProps): JSX.E
 	)
 }
 
-export const ImageBox = styled(ImageBoxElement)`
-	/* div {
-		display: inline-block;
+export const ImageBox = styled(ImageBoxElement)`	
+	display: inline-block;
+	width: 100%;
+	height: 512px;
+	font-size: 16px;
+	
+	.item {
 		width: 100%;
-		height: 512px;
-		font-size: 16px;
-			
-		.item {
-			width: 100%;
-			height: 100%;
-			border: solid 1px #ff00dd;
-			user-select: none;
-		}
-	} */
+		height: 100%;
+		border: solid 1px #ff00dd;
+		user-select: none;
+	}
 `

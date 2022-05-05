@@ -41,19 +41,12 @@ export const Carousel = ({ className, imageAndLinkUrls }: CarouselProps): JSX.El
 			transition: transform 0.5s;
 			transform: translate3d(${-100 * showingImageNumber}%, 0, 0);
 
-			.list_item {
+			/* .list_item {
 				display: inline-block;
 				width: 100%;
 				height: 512px;
 				font-size: 16px;
-			}
-		}
-
-		.item {
-			width: 100%;
-			height: 100%;
-			border: solid 1px #ff00dd;
-			user-select: none;
+			} */
 		}
 	`
 
