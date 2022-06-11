@@ -1,32 +1,26 @@
-import firstImage from "../assets/1.jpg";
-import secondImage from "../assets/2.jpg";
-import thirdImage from "../assets/3.jpg";
-import forthImage from "../assets/4.jpg";
-import fifthImage from "../assets/5.jpg";
-
 export type ImageAndLinkUrl = {
 	"imageUrl": URL,
 	"linkUrl": URL
 }
 export const imageAndLinkUrls: ReadonlyArray<ImageAndLinkUrl> = [
 	{
-		"imageUrl": new URL(firstImage),
+		"imageUrl": new URL("https://placehold.jp/3d4070/ffffff/1280x512.png"),
 		"linkUrl": new URL("https://yahoo.co.jp")
 	},
 	{
-		"imageUrl": new URL(secondImage),
+		"imageUrl": new URL("https://placehold.jp/703e40/ffffff/1280x512.png"),
 		"linkUrl": new URL("https://www.google.co.jp/")
 	},
 	{
-		"imageUrl": new URL(thirdImage),
+		"imageUrl": new URL("https://placehold.jp/6f3e70/ffffff/1280x512.png"),
 		"linkUrl": new URL("https://www.microsoft.com/ja-jp")
 	},
 	{
-		"imageUrl": new URL(forthImage),
+		"imageUrl": new URL("https://placehold.jp/3e7048/ffffff/1280x512.png"),
 		"linkUrl": new URL("https://www.apple.com/jp/")
 	},
 	{
-		"imageUrl": new URL(fifthImage),
+		"imageUrl": new URL("https://placehold.jp/6c703e/ffffff/1280x512.png"),
 		"linkUrl": new URL("https://github.com/")
 	}
 ] as const
