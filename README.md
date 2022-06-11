@@ -7,6 +7,7 @@
 UrlList.tsにイメージURLとリンクURLのペアを設定してください。
 
 ## 動作確認環境
+デモは[こちら](https://kaminoryo.github.io/react-carousel/)。
 現在Windows10/Chrome環境のみ
 
 ## Todo
