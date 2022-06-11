@@ -1,15 +1,23 @@
-import React from "react"
+import React, { MouseEventHandler } from "react"
 import styled from "styled-components"
 import { ImageAndLinkUrl } from "../model/UrlList"
 import { StyledComponent } from "../model/Type";
 
-type ImageBoxProps = StyledComponent & ImageAndLinkUrl
-const ImageBoxElement = ({ className, linkUrl, imageUrl }: ImageBoxProps): JSX.Element => {
+export type ImageBoxProps = StyledComponent & {
+	imageAndLinkUrl: ImageAndLinkUrl,
+}
+
+
+const a = () => {
+	console.log("mouseDown")
+}
+
+const ImageBoxElement = ({ className, imageAndLinkUrl }: ImageBoxProps): JSX.Element => {
 	return (
-		<div className={className}>
+		<div className={className} onMouseDown={a}>
 			<div className="item">
-				<a href={linkUrl.href}>
-					<img src={imageUrl.href} />
+				<a href={imageAndLinkUrl.linkUrl.href}>
+					<img src={imageAndLinkUrl.imageUrl.href} />
 				</a>
 			</div>
 		</div>
